@@ -3,6 +3,14 @@
   "version": "1.0.0",
   "description": "Backend Development Fundamentals Lab 2 - SQLite Database and CRUD Routes",
   "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saranyajinkala087-ops/labreport2.git"
+  },
+  "homepage": "https://github.com/saranyajinkala087-ops/labreport2#readme",
+  "bugs": {
+    "url": "https://github.com/saranyajinkala087-ops/labreport2/issues"
+  },
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
@@ -14,7 +22,7 @@
     "sqlite3",
     "crud"
   ],
-  "author": "",
+  "author": "saranyajinkala087-ops",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {

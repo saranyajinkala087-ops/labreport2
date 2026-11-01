@@ -2,6 +2,8 @@
 
 This repository contains the complete implementation for Lab 2: SQLite Database and CRUD Routes built using Node.js, Express.js, and SQLite.
 
+🔗 **Repository Link:** [https://github.com/saranyajinkala087-ops/labreport2](https://github.com/saranyajinkala087-ops/labreport2)
+
 ---
 
 ## 🛠️ Tech Stack
