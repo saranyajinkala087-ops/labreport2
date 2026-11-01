@@ -65,5 +65,19 @@ Server will run at: `http://localhost:3000/`
 
 ---
 
-## 📸 Output Screenshot
-Output screenshots of API responses are saved in the [`.screenshots`](./.screenshots/) folder.
+## 📸 Output Screenshots
+
+### 1. `GET /books/` (Retrieve all books)
+![GET All Books](./.screenshots/get-all-books.png)
+
+### 2. `GET /books/:bookId/` (Retrieve single book by ID)
+![GET Book By ID](./.screenshots/get-book-by-id.png)
+
+### 3. `POST /books/` (Add a new book)
+![POST Book](./.screenshots/post-book.png)
+
+### 4. `PUT /books/:bookId/` (Update existing book)
+![PUT Book](./.screenshots/put-book.png)
+
+### 5. `DELETE /books/:bookId/` (Delete book by ID)
+![DELETE Book](./.screenshots/delete-book.png)
