@@ -1,0 +1,572 @@
+{
+  "info": {
+    "_postman_id": "lab3-books-rest-api",
+    "name": "Lab 3 - Books REST API",
+    "description": "Success and validation coverage for the Lab 3 Books API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET all (defaults)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/books"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"list response shape\",()=>{pm.expect(body.data).to.be.an(\"array\");pm.expect(body).to.have.property(\"total\");pm.expect(body).to.have.property(\"limit\");pm.expect(body).to.have.property(\"offset\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET search_q partial title",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/books?search_q=Gatsby"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"list response shape\",()=>{pm.expect(body.data).to.be.an(\"array\");pm.expect(body).to.have.property(\"total\");pm.expect(body).to.have.property(\"limit\");pm.expect(body).to.have.property(\"offset\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET order_by + order",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/books?order_by=price&order=DESC"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"list response shape\",()=>{pm.expect(body.data).to.be.an(\"array\");pm.expect(body).to.have.property(\"total\");pm.expect(body).to.have.property(\"limit\");pm.expect(body).to.have.property(\"offset\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET limit + offset",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/books?limit=3&offset=3"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"list response shape\",()=>{pm.expect(body.data).to.be.an(\"array\");pm.expect(body).to.have.property(\"total\");pm.expect(body).to.have.property(\"limit\");pm.expect(body).to.have.property(\"offset\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET min_price + max_price",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/books?min_price=300&max_price=450"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"list response shape\",()=>{pm.expect(body.data).to.be.an(\"array\");pm.expect(body).to.have.property(\"total\");pm.expect(body).to.have.property(\"limit\");pm.expect(body).to.have.property(\"offset\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET combined filters",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/books?search_q=The&order_by=price&order=ASC&limit=3&offset=0&min_price=200&max_price=500"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"list response shape\",()=>{pm.expect(body.data).to.be.an(\"array\");pm.expect(body).to.have.property(\"total\");pm.expect(body).to.have.property(\"limit\");pm.expect(body).to.have.property(\"offset\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET by id (exists)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/books/1"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"book response shape\",()=>{pm.expect(body.data).to.be.an(\"object\");pm.expect(body.data).to.have.all.keys(\"id\",\"title\",\"author\",\"price\",\"pages\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET by id (404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/books/9999"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 404\",()=>pm.response.to.have.status(404));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"error response shape\",()=>{pm.expect(body.message).to.be.a(\"string\").and.not.empty;});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "POST valid (201)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/books",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Postman Collection Book\",\n  \"author\": \"Test Author\",\n  \"price\": 425,\n  \"pages\": 210\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 201\",()=>pm.response.to.have.status(201));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"created book response shape\",()=>{pm.expect(body.message).to.be.a(\"string\");pm.expect(body.data.id).to.be.a(\"number\");pm.expect(body.data.title).to.eql(\"Postman Collection Book\");});",
+              "pm.collectionVariables.set(\"createdBookId\", body.data.id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "POST missing title (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/books",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"author\": \"Test Author\",\n  \"price\": 425\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 400\",()=>pm.response.to.have.status(400));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"error response shape\",()=>{pm.expect(body.message).to.be.a(\"string\").and.not.empty;});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "POST missing author (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/books",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Missing Author\",\n  \"price\": 425\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 400\",()=>pm.response.to.have.status(400));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"error response shape\",()=>{pm.expect(body.message).to.be.a(\"string\").and.not.empty;});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "POST non-numeric price (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/books",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Invalid Price\",\n  \"author\": \"Test Author\",\n  \"price\": \"free\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 400\",()=>pm.response.to.have.status(400));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"error response shape\",()=>{pm.expect(body.message).to.be.a(\"string\").and.not.empty;});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "PUT valid (200)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/books/1",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Updated by Postman\",\n  \"price\": 355\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"updated book response shape\",()=>{pm.expect(body.message).to.be.a(\"string\");pm.expect(body.data.title).to.eql(\"Updated by Postman\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "PUT non-existent id (404)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/books/9999",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Missing Record\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 404\",()=>pm.response.to.have.status(404));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"error response shape\",()=>{pm.expect(body.message).to.be.a(\"string\").and.not.empty;});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "PUT invalid body (400)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/books/1",
+        "body": {
+          "mode": "raw",
+          "raw": "{}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 400\",()=>pm.response.to.have.status(400));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"error response shape\",()=>{pm.expect(body.message).to.be.a(\"string\").and.not.empty;});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "DELETE valid (200)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "{{baseUrl}}/books/19"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"success response shape\",()=>{pm.expect(body.message).to.be.a(\"string\").and.not.empty;});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "DELETE non-existent id (404)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "{{baseUrl}}/books/9999"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 404\",()=>pm.response.to.have.status(404));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"error response shape\",()=>{pm.expect(body.message).to.be.a(\"string\").and.not.empty;});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET invalid order (400)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/books?order=SIDEWAYS"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 400\",()=>pm.response.to.have.status(400));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"error response shape\",()=>{pm.expect(body.message).to.be.a(\"string\").and.not.empty;});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET invalid limit (400)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/books?limit=abc"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 400\",()=>pm.response.to.have.status(400));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"error response shape\",()=>{pm.expect(body.message).to.be.a(\"string\").and.not.empty;});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET invalid price range (400)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/books?min_price=500&max_price=300"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 400\",()=>pm.response.to.have.status(400));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"error response shape\",()=>{pm.expect(body.message).to.be.a(\"string\").and.not.empty;});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET invalid order_by (400)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/books?order_by=secret_column"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"status is 400\",()=>pm.response.to.have.status(400));",
+              "pm.test(\"response is JSON\",()=>pm.response.to.be.json);",
+              "const body=pm.response.json();",
+              "pm.test(\"error response shape\",()=>{pm.expect(body.message).to.be.a(\"string\").and.not.empty;});"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "variable": []
+}
